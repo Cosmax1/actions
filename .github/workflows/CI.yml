@@ -54,7 +54,6 @@ jobs:
     if: success()
     needs: [build]
     uses: ./.github/workflows/sub-work.yml
-    environment: dev
     with:
       org-var: ${{ vars.GPU_TYPE }}
       env-var: ${{ vars.ENV_VAR }}
