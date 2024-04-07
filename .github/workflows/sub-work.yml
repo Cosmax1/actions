@@ -35,4 +35,4 @@ jobs:
           echo inputs.flag '${{ inputs.flag }}'
           echo inputs.timeout '${{ inputs.timeout }}'
           echo vars REPO_VAR1 '${{ vars.REPO_VAR1 }}'
-          echo vars epo-var1-inp '${{ inputs.epo-var1-inp }}'
+          echo vars repo-var1-inp '${{ inputs.repo-var1-inp }}'
