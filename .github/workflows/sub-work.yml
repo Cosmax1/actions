@@ -1,7 +1,7 @@
 name: Sub Workflow
 
 on:
-  worflow_call:
+  workflow_call:
     inputs:
       flag:
         required: true
