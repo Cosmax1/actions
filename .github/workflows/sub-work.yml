@@ -3,36 +3,35 @@ name: Sub Workflow
 on:
   workflow_call:
     inputs:
-      flag:
-        required: true
-        type: boolean
-        description: 'Bool flag'
-      
-      repo-var1-inp:
+      org-var:
         required: true
         type: string
-        description: 'pass REPO_VAR1'
-
-      timeout:
+      
+      repo-var:
         required: true
-        type: number
-        description: 'input TIMEOUT'
+        type: string
+
+      env-var:
+        required: true
+        type: string
 
 env:
-  FLAG: ${{ inputs.flag }}
-  REPO_VAR1_INP: ${{ inputs.repo-var1-inp }}
-  TIMEOUT: ${{ inputs.timeout }}
+  ORG_VAR: ${{ inputs.org-var }}
+  REPO_VAR: ${{ inputs.repo-var }}
+  ENV_VAR: ${{ inputs.env-var }}
 
 jobs:
 
   job1:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
       - name: Use env and vars
         run: |
-          echo env.FLAG '${{ env.FLAG }}'
-          echo inputs.flag '${{ inputs.flag }}'
-          echo inputs.timeout '${{ inputs.timeout }}'
-          echo vars REPO_VAR1 '${{ vars.REPO_VAR1 }}'
-          echo vars repo-var1-inp '${{ inputs.repo-var1-inp }}'
+          echo org-var (input)  '${{ inputs.org-var }}'
+          echo org-var (global) '${{ vars.GPU_TYPE }}'
+          echo env-var (input)  '${{ inputs.env-var }}'
+          echo env-var (global) '${{ vars.ENV_VAR }}'
+          echo repo-var (input)  '${{ inputs.repo-var }}'
+          echo repo-var (global) '${{ vars.REPO_VAR1 }}'

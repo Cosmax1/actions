@@ -26,6 +26,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    environment: dev
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -53,7 +54,8 @@ jobs:
     if: success()
     needs: [build]
     uses: ./.github/workflows/sub-work.yml
+    environment: dev
     with:
-      flag: true
-      repo-var1-inp: ${{ vars.REPO_VAR1 }}
-      timeout: 15
+      org-var: ${{ vars.GPU_TYPE }}
+      env-var: ${{ vars.ENV_VAR }}
+      repo-var: ${{ vars.REPO_VAR1 }}
