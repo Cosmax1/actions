@@ -1,0 +1,38 @@
+name: Sub Workflow
+
+on:
+  worflow_call:
+    inputs:
+      flag:
+        required: true
+        type: boolean
+        description: 'Bool flag'
+      
+      repo-var1-inp:
+        required: true
+        type: string
+        desription: 'pass REPO_VAR1'
+
+      timeout:
+        reuired:
+        type: number
+        description: 'input TIMEOUT'
+
+env:
+  FLAG: ${{ inputs.flag }}
+  REPO_VAR1_INP: ${{ inputs.repo-var1-inp }}
+  TIMEOUT: ${{ inputs.timeout }}
+
+jobs:
+
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use env and vars
+        run: |
+          echo env.FLAG '${{ env.FLAG }}'
+          echo inputs.flag '${{ inputs.flag }}'
+          echo inputs.timeout '${{ inputs.timeout }}'
+          echo vars REPO_VAR1 '${{ vars.REPO_VAR1 }}'
+          echo vars epo-var1-inp '${{ inputs.epo-var1-inp }}'
