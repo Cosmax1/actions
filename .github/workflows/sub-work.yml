@@ -14,7 +14,7 @@ on:
         description: 'pass REPO_VAR1'
 
       timeout:
-        required:
+        required: true
         type: number
         description: 'input TIMEOUT'
 
