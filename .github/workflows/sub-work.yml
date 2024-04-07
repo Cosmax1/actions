@@ -29,9 +29,9 @@ jobs:
     steps:
       - name: Use env and vars
         run: |
-          echo org-var (input)  '${{ inputs.org-var }}'
-          echo org-var (global) '${{ vars.GPU_TYPE }}'
-          echo env-var (input)  '${{ inputs.env-var }}'
-          echo env-var (global) '${{ vars.ENV_VAR }}'
-          echo repo-var (input)  '${{ inputs.repo-var }}'
-          echo repo-var (global) '${{ vars.REPO_VAR1 }}'
+          echo 'org-var (input)   ${{ inputs.org-var }}'
+          echo 'org-var (global)  ${{ vars.GPU_TYPE }}'
+          echo 'env-var (input)   ${{ inputs.env-var }}'
+          echo 'env-var (global)  ${{ vars.ENV_VAR }}'
+          echo 'repo-var (input)  ${{ inputs.repo-var }}'
+          echo 'repo-var (global) ${{ vars.REPO_VAR1 }}'
