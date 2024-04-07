@@ -11,10 +11,10 @@ on:
       repo-var1-inp:
         required: true
         type: string
-        desription: 'pass REPO_VAR1'
+        description: 'pass REPO_VAR1'
 
       timeout:
-        reuired:
+        required:
         type: number
         description: 'input TIMEOUT'
 
