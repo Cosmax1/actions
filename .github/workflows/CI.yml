@@ -19,7 +19,10 @@ permissions:
 
 env:
   ORG_SECRET: ${{ secrets.SECRET_ONE }}
-  TIMEOUT: ${{ startsWith(vars.GPU_TYPE, 'RTX') && 2 || 10 }}
+  TIMEOUT: |
+    startsWith(vars.GPU_TYPE, 'RTX') 
+    && 2 
+    || 10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,12 +42,13 @@ jobs:
         run: echo Hello, world!
 
       - name: Use env and vars
-        timeout-minutes: ${{ env.TIMEOUT }}
+        timeout-minutes: ${{ fromJson(env.TIMEOUT) }}
         run: |
           echo org secret '${{ env.ORG_SECRET }}'
           echo vars GPU_TYPE '${{ vars.GPU_TYPE }}'
           echo vars ENV_VAR '${{ vars.ENV_VAR }}'
           echo vars REPO_VAR1 '${{ vars.REPO_VAR1 }}'
+          echo env TIMEOUT '${{ env.TIMEOUT }}'
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
