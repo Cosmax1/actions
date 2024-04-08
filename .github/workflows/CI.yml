@@ -42,7 +42,7 @@ jobs:
         run: echo Hello, world!
 
       - name: Use env and vars
-        timeout-minutes: ${{ fromJson(env.TIMEOUT) }}
+        timeout-minutes: ${{ fromJSON(env.TIMEOUT) }}
         run: |
           echo org secret '${{ env.ORG_SECRET }}'
           echo vars GPU_TYPE '${{ vars.GPU_TYPE }}'
