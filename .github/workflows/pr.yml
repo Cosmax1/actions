@@ -1,5 +1,5 @@
 name: PR
-run-name: "CI - [${{ github.ref_name }}]"
+run-name: "PR comment - [${{ github.ref_name }}]"
 
 on:
   workflow_dispatch:
