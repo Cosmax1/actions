@@ -9,11 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-
-env:
-  ORG_SECRET: ${{ secrets.SECRET_ONE }}
-  TIMEOUT: ${{ startsWith(vars.GPU_TYPE, 'RTX') && 2 || 10 }}
+  contents: write
 
 jobs:
 
