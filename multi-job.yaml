@@ -1,0 +1,52 @@
+name: multi job
+run-name: "multi job - [${{ github.ref_name }}]"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ORG_SECRET: ${{ secrets.SECRET_ONE }}
+  TIMEOUT: ${{ startsWith(vars.GPU_TYPE, 'RTX') && 2 || 10 }}
+
+jobs:
+
+  job1:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: step1
+        run: echo Hello, world!
+
+      - name: step2
+        run: |
+          echo "step2" | tee -a "#GITHUB_OUTPUT"
+
+      - name: step3
+        run: echo "step3"
+
+      - name: step4
+        run: echo "step4"
+
+      - name: step5(on error)
+        if: failure()
+        run: echo "step5"
+
+  error-handler:
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    needs: [job1]
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: handle error
+        run: |
+          echo "handle error" | tee -a "#GITHUB_OUTPUT"
